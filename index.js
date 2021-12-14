@@ -6,7 +6,7 @@ let result = {
 
 const parseLibraryName = name => name.split('@')[0]
 
-const findName = 'webpack'
+const findName = 'yargs' // точное имя библиотеки
 
 yarnconverter.toObject().then((yarn)=>{
 
@@ -17,8 +17,11 @@ yarnconverter.toObject().then((yarn)=>{
     }
     yarn[libraryName].dependencies &&
     Object.keys(yarn[libraryName].dependencies).forEach(dependenciesKey => {
-     if(parseLibraryName(dependenciesKey) === findName) result.dependencies = [...result.dependencies, parseLibraryName(dependenciesKey)]
+     if(parseLibraryName(dependenciesKey) === findName) result.dependencies = [...result.dependencies, parseLibraryName(libraryName)]
     })
+  })
+
   console.log('result: ', result)
-})});
+});
+
 
